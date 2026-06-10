@@ -12,6 +12,7 @@ import {
   ER_LABEL,
   ER_SUPPORT,
   companionForBuddy,
+  isCompanionId,
   type BinaryAxisId,
   type CompanionId,
   type ErState,
@@ -70,11 +71,19 @@ export default function ResultDetails({ companionId }: { companionId: CompanionI
   const mode = deriveMode(vector);
   const picked = searchParams.get("picked") === "1";
 
+  // The buddy the quiz matched you with. It rides along in `ab` once the user
+  // starts picking their own, so the highlight always stays on the real match.
+  const abParam = searchParams.get("ab");
+  const assignedBuddyId: CompanionId =
+    abParam && isCompanionId(abParam) ? abParam : buddyId;
+
   // Pick a different study buddy: the route is keyed on the matched companion, so
-  // resolve which companion yields the chosen buddy. Preserve the vector params.
+  // resolve which companion yields the chosen buddy. Preserve the vector params
+  // and pin the originally assigned buddy.
   function pickBuddyHref(buddyChoice: CompanionId): string {
     const params = new URLSearchParams(searchParams.toString());
     params.set("picked", "1");
+    params.set("ab", assignedBuddyId);
     const qs = params.toString();
     const target = companionForBuddy(buddyChoice);
     return qs ? `/result/${target}?${qs}` : `/result/${target}`;
@@ -153,18 +162,21 @@ export default function ResultDetails({ companionId }: { companionId: CompanionI
         <div className="override-grid">
           {ALL_COMPANIONS.map((id) => {
             const c = COMPANIONS[id];
-            const isCurrent = id === buddyId;
+            // Highlight pins to the quiz's match; the user's pick gets its own marker.
+            const isAssigned = id === assignedBuddyId;
+            const isPicked = picked && id === buddyId && !isAssigned;
             return (
               <Link
                 key={id}
                 href={pickBuddyHref(id)}
-                className={`override-chip ${isCurrent ? "current" : ""}`}
-                aria-current={isCurrent ? "true" : undefined}
+                className={`override-chip ${isAssigned ? "current" : ""} ${isPicked ? "picked" : ""}`}
+                aria-current={id === buddyId ? "true" : undefined}
                 // The user's OWN choice — the popularity signal (latest pick wins).
                 onClick={() => track({ sessionId: getSessionId(), type: "buddy_pick", buddy: id })}
               >
                 <img src={c.avatar} alt={c.name} />
                 <span>{c.name}</span>
+                {isAssigned && <span className="chip-tag">your match</span>}
               </Link>
             );
           })}

@@ -690,6 +690,17 @@ a {
   background: color-mix(in srgb, var(--accent) 16%, transparent);
   color: var(--ink);
 }
+.override-chip.picked {
+  border: 1px dashed var(--accent);
+  color: var(--ink);
+}
+.chip-tag {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
 
 @media (max-width: 480px) {
   .override-grid {
@@ -724,6 +735,13 @@ a {
 .share-btn:hover {
   border-color: var(--accent);
   transform: translateY(-2px);
+}
+.share-note {
+  flex-basis: 100%;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--accent);
 }
 
 .cta-app {

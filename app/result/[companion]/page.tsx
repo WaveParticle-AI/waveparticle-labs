@@ -112,7 +112,7 @@ export default async function ResultPage({ params }: Params) {
           <ResultDetails companionId={id} />
         </Suspense>
 
-        <ShareButtons text={shareText} />
+        <ShareButtons text={shareText} imageUrl={`/result/${id}/opengraph-image`} />
       </article>
 
       <section className="cta-app">
