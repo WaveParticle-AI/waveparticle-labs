@@ -100,21 +100,23 @@ export default function ShareButtons({ text, imageUrl }: Props) {
     }
   }
 
-  // Platform buttons: on devices that can share files (phones — where WhatsApp/
-  // Instagram/X actually live) the image rides along via the share sheet. On
-  // desktop we download the card and open the platform with the caption so the
-  // user can attach it.
+  // WhatsApp/X open the app directly with caption + link — the link preview
+  // renders the card, so the image still arrives without a share-sheet detour.
+  // Instagram has no text intent to fall back on, so it keeps the image-first
+  // flow: share sheet where files are supported, else save card + copy caption.
   async function shareTo(platform: "wa" | "x" | "ig") {
-    if (await shareImage()) return;
-    const downloaded = downloadImage();
-    const t = encodeURIComponent(`${text} ${currentUrl()}`);
     if (platform === "ig") {
-      // Instagram has no web share intent — give them the card + caption.
+      if (await shareImage()) return;
+      const downloaded = downloadImage();
       void copy();
-      flash(downloaded ? "Card saved + caption copied — paste it in Instagram!" : "Caption copied — paste it in Instagram!");
+      flash(
+        downloaded
+          ? "Card saved + caption copied — paste it in Instagram!"
+          : "Caption copied — paste it in Instagram!",
+      );
       return;
     }
-    if (downloaded) flash("Card saved — attach it to your post!");
+    const t = encodeURIComponent(`${text} ${currentUrl()}`);
     const href =
       platform === "x"
         ? `https://twitter.com/intent/tweet?text=${t}`
