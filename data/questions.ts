@@ -59,7 +59,7 @@ export const QUESTIONS: QuizQuestion[] = [
     memeTop: "i can ONLY focus",
     memeBottom: "in a café that charges me $7 for the privilege",
     options: [
-      { emoji: "☕", label: "Loud café / coworking buzz — silence is genuinely creepy", effects: [e("SE", "presence")] },
+      { emoji: "☕", label: "Loud café / coworking buzz. Silence is genuinely creepy", effects: [e("SE", "presence")] },
       { emoji: "🎧", label: "Noise-cancelling everything. Just me and the void.", effects: [e("SE", "solitude")] },
     ],
   },
@@ -73,7 +73,7 @@ export const QUESTIONS: QuizQuestion[] = [
     memeBottom: "me: googling how to start literally anything",
     options: [
       { emoji: "📋", label: "Write the literal, boring, beautiful step-by-step checklist", effects: [e("EX", "checklist"), e("TM", "structured")] },
-      { emoji: "🌌", label: "Sketch the big vision and the vibe — details are future-me's problem", effects: [e("EX", "flow"), e("TM", "intuitive")] },
+      { emoji: "🌌", label: "Sketch the big vision and the vibe cause details are future-me's problem", effects: [e("EX", "flow"), e("TM", "intuitive")] },
     ],
   },
   {
@@ -107,7 +107,7 @@ export const QUESTIONS: QuizQuestion[] = [
     memeTop: "what actually keeps me going?",
     memeBottom: "be honest — it's probably not 'discipline'",
     options: [
-      { emoji: "🚀", label: "Nothing fancy — I lock in and drive myself", effects: [e("ER", "self")] },
+      { emoji: "🚀", label: "Nothing fancy, I lock in and drive myself", effects: [e("ER", "self")] },
       { emoji: "👮", label: "Knowing someone's checking. Don't make me look bad.", effects: [e("ER", "accountability")] },
       { emoji: "🫶", label: "Someone in my corner going 'you've got this'", effects: [e("ER", "supported")] },
     ],
@@ -200,7 +200,7 @@ export const QUESTIONS: QuizQuestion[] = [
     prompt: "You finish a task. You want your companion to…",
     illustration: "/illustrations/q15.svg",
     memeTop: "task complete!",
-    memeBottom: "just tick it off — or unlock new lore?",
+    memeBottom: "just tick it off or unlock new lore?",
     options: [
       { emoji: "✔️", label: "Just confirm it's done and move to the next thing", effects: [e("SI", "ignore")] },
       { emoji: "🌍", label: "Update the story world based on what I just did", effects: [e("SI", "narrative")] },

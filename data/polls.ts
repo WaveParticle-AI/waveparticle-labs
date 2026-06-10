@@ -26,7 +26,7 @@ export const COMPANION_POLLS: Record<CompanionId, Poll> = {
   },
   oppenheimer: {
     id: "oppenheimer-fate",
-    question: "Knowing everything — should Oppenheimer have walked away and refused to build it?",
+    question: "Knowing everything: Should Oppenheimer have walked away and refused to build it?",
     kicker: "the question that cannot be unanswered",
     options: [
       { id: "walk", label: "Yes — walk away", emoji: "🚶" },
