@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Anton, Inter, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/constants";
+import AmbientBackground from "@/components/background/AmbientBackground";
 import "./globals.css";
 
 const display = Anton({
@@ -47,6 +48,7 @@ export default function RootLayout({
       className={`${display.variable} ${body.variable} ${mono.variable}`}
     >
       <body suppressHydrationWarning>
+        <AmbientBackground />
         {children}
         <Analytics />
       </body>

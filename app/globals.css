@@ -1138,9 +1138,30 @@ a {
   margin-top: 18px;
 }
 
+/* Ambient three.js background — sits above the body grid, below all content */
+.ambient-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 900ms ease;
+}
+.ambient-bg.is-ready {
+  opacity: 0.55;
+}
+@media (pointer: coarse) {
+  .ambient-bg.is-ready {
+    opacity: 0.45;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;
+  }
+  .ambient-bg {
+    display: none;
   }
 }

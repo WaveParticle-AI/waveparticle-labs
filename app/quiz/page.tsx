@@ -8,6 +8,7 @@ import { QUESTIONS, TOTAL_QUESTIONS } from "@/data/questions";
 import { score, encodeVector, type Answers } from "@/lib/scoring";
 import { buddyFor } from "@/data/mapping";
 import { getSessionId, track } from "@/lib/analytics";
+import { quizProgress } from "@/lib/scene-signals";
 
 export default function QuizPage() {
   const router = useRouter();
@@ -25,6 +26,12 @@ export default function QuizPage() {
   useEffect(() => {
     indexRef.current = index;
   }, [index]);
+
+  // Drive the ambient background: wave-ness ramps with quiz progress.
+  useEffect(() => {
+    quizProgress.set(index / (TOTAL_QUESTIONS - 1));
+  }, [index]);
+  useEffect(() => () => quizProgress.set(0), []);
   const finishingRef = useRef(false);
 
   function choose(optionIndex: number) {
