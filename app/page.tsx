@@ -28,7 +28,6 @@ export default function Landing() {
               </span>
             ))}
           </div>
-          <span className="strip-hint">tap to meet all 8 →</span>
         </Link>
       </Reveal>
 

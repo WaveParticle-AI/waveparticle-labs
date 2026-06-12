@@ -1022,19 +1022,6 @@ a {
 .companion-strip-link {
   display: block;
 }
-.strip-hint {
-  display: inline-block;
-  margin-top: -10px;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  transition: color 0.15s;
-}
-.companion-strip-link:hover .strip-hint {
-  color: var(--accent);
-}
 .landing-cta {
   display: flex;
   flex-direction: column;
